@@ -30,7 +30,7 @@ Current tenants:
 
 Files under `internal/<team>/*.json` are **CI-owned artefacts**. Each team's CD pipeline regenerates and force-pushes them on production promotion. Any manual edit is lost on the next publish. To change a spec, change the source API and let the pipeline republish.
 
-For Surface, the publisher is the `publish-api-docs` job in `dashfi/surface`'s `.github/workflows/cd.yml`, which pushes with a fine-grained PAT (`API_DOCS_PUSH_TOKEN`, `contents:write` on this repo only).
+For Surface, the publisher is the `publish-api-docs` job in `dashfi/surface`'s `.github/workflows/cd.yml`, which pushes with a fine-grained PAT (`API_DOCS_GITHUB_REPO_TOKEN`, `contents:write` on this repo only).
 
 ## Local preview
 
