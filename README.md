@@ -1,55 +1,41 @@
-# Mintlify Starter Kit
+# api-docs
 
-Use the starter kit to get your docs deployed and ready to customize.
+Shared **internal** API-documentation site for Dash.fi engineering. Hosts each team's OpenAPI specs behind Mintlify Auth (org members only). Surface is the first tenant; other teams (e.g. Core) plug in under their own subdirectory.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## Layout
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+```
+api-docs/
+├── internal/                 # ← the Mintlify project watches THIS subdirectory
+│   ├── docs.json             # site config: nav groups (one per spec), theme, playground
+│   ├── index.mdx             # internal landing page
+│   ├── logo/ , favicon.svg   # branding
+│   └── <team>/               # one directory per owning team
+│       └── *.json            # OpenAPI specs (CI-generated — see below)
+└── public/                   # reserved for a future public docs project (not in use)
+```
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+Current tenants:
 
-## AI-assisted writing
+- `internal/surface/` — `web-api.json`, `admin-api.json`, `internal-api.json`, pushed by Surface CI.
 
-Set up your AI coding tool to work with Mintlify:
+## Conventions
+
+- **Watched branch:** `main` (unprotected). A push to `main` triggers a Mintlify redeploy.
+- **Mintlify project:** a single project in the Dash.fi Mintlify org, visibility **Private → Authenticated**, watching subdirectory `internal/`.
+- **Domain:** `internal-api-docs.dash.fi`.
+- **Access = Mintlify org membership.** On the current (Starter) plan there is no read-only role, so every enrolled member can also edit other projects in the org, including `help.dash.fi`. Enrol deliberately and **remove membership on offboarding**.
+
+## Generated specs — do not hand-edit
+
+Files under `internal/<team>/*.json` are **CI-owned artefacts**. Each team's CD pipeline regenerates and force-pushes them on production promotion. Any manual edit is lost on the next publish. To change a spec, change the source API and let the pipeline republish.
+
+For Surface, the publisher is the `publish-api-docs` job in `dashfi/surface`'s `.github/workflows/cd.yml`, which pushes with a fine-grained PAT (`API_DOCS_PUSH_TOKEN`, `contents:write` on this repo only).
+
+## Local preview
 
 ```bash
-npx skills add https://mintlify.com/docs
+cd internal
+npx mint@latest dev        # http://localhost:3000
+npx mint@latest validate   # CI-style validation
 ```
-
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
-npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
-mint dev
-```
-
-View your local preview at `http://localhost:3000`.
-
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
