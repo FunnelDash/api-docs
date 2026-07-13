@@ -1,41 +1,69 @@
 # api-docs
 
-Shared **internal** API-documentation site for Dash.fi engineering. Hosts each team's OpenAPI specs behind Mintlify Auth (org members only). Surface is the first tenant; other teams (e.g. Core) plug in under their own subdirectory.
+Shared **internal** API-documentation site for Dash.fi engineering. Renders every team's OpenAPI specs — plus shared developer docs — as one unified [Scalar](https://scalar.com) Docs site, gated to Dash.fi staff. Surface is the first tenant; other teams (e.g. Core) plug in by publishing to the shared registry.
+
+## How it works
+
+This repo is the **Scalar Docs project** for the unified site. It does **not** hold the OpenAPI specs. Instead:
+
+1. Each team's CI generates its specs and publishes them to the shared **Scalar Registry** under the `dash-fi` namespace, with a team-prefixed slug (e.g. `surface-web-api`).
+2. `scalar.config.json` in this repo references those registry entries by `namespace` + `slug` and composes them into one navigation, grouped by team.
+3. When a referenced spec is republished, **Scalar redeploys this site automatically** — no push to this repo is needed for a spec change.
+
+```
+surface/ CI ─┐
+core/    CI ─┼─ scalar registry publish → Registry (namespace: dash-fi)
+  …          ┘                                   │ (auto-redeploy on change)
+                                                 ▼
+api-docs/ (this repo — Scalar Docs project) ── Git sync on merge ──► gated Scalar site
+```
 
 ## Layout
 
 ```
 api-docs/
-├── internal/                 # ← the Mintlify project watches THIS subdirectory
-│   ├── docs.json             # site config: nav groups (one per spec), theme, playground
-│   ├── index.mdx             # internal landing page
-│   ├── logo/ , favicon.svg   # branding
-│   └── <team>/               # one directory per owning team
-│       └── *.json            # OpenAPI specs (CI-generated — see below)
-└── public/                   # reserved for a future public docs project (not in use)
+├── scalar.config.json   # the whole site: nav (grouped by team), theme, logo, registry refs
+├── docs/                # shared Markdown/MDX developer docs
+│   └── index.md         # landing page
+└── internal/            # LEGACY Mintlify project — kept until Scalar cutover, then delete
 ```
 
-Current tenants:
+No `*.json` specs live here anymore — they come from the registry.
 
-- `internal/surface/` — `web-api.json`, `admin-api.json`, `internal-api.json`, pushed by Surface CI.
+## Scalar setup
 
-## Conventions
-
-- **Watched branch:** `main` (unprotected). A push to `main` triggers a Mintlify redeploy.
-- **Mintlify project:** a single project in the Dash.fi Mintlify org, visibility **Private → Authenticated**, watching subdirectory `internal/`.
+- **Team / namespace:** a single `Dash.fi` team (one billing unit) owning the `dash-fi` namespace. All teams publish here; per-team separation is by slug prefix, not by namespace.
+- **Docs project:** connected to `FunnelDash/api-docs` via Git sync; `scalar.config.json` at the repo root. Deploys on merge to `main`.
 - **Domain:** `internal-api-docs.dash.fi`.
-- **Access = Mintlify org membership.** On the current (Starter) plan there is no read-only role, so every enrolled member can also edit other projects in the org, including `help.dash.fi`. Enrol deliberately and **remove membership on offboarding**.
+- **Access:** the Docs project is **Private**, restricted to an Access Group for the `@dash.fi` email domain (no SSO required on the Pro plan).
+- **Downloads:** each API page exposes a native **Download OpenAPI Document** button, gated behind the same login.
 
-## Generated specs — do not hand-edit
+## Publishing specs (per team)
 
-Files under `internal/<team>/*.json` are **CI-owned artefacts**. Each team's CD pipeline regenerates and force-pushes them on production promotion. Any manual edit is lost on the next publish. To change a spec, change the source API and let the pipeline republish.
+Each team publishes from its **own** repo's CI. Surface's publisher is `.github/scripts/publish-api-specs.sh` in `dashfi/surface` (invoked by the `publish-api-docs` workflow on prod promotion), which runs:
 
-For Surface, the publisher is the `publish-api-docs` job in `dashfi/surface`'s `.github/workflows/cd.yml`, which pushes with a fine-grained PAT (`API_DOCS_GITHUB_REPO_TOKEN`, `contents:write` on this repo only).
+```bash
+scalar auth login --token "$SCALAR_TOKEN"
+scalar registry publish <spec>.json \
+  --namespace dash-fi \
+  --slug surface-<web-api|admin-api|internal-api> \
+  --version <info.version> --private --force
+```
+
+`SCALAR_TOKEN` is a Scalar CI token for the `dashfi` team (repo secret). Specs are **registry-owned artefacts** — do not commit them here; change the source API and let the pipeline republish.
+
+## Onboarding a new team (e.g. Core)
+
+1. In the team's repo, add a CI step running `scalar registry publish --namespace dash-fi --slug core-<api> …` with a `SCALAR_TOKEN` for the `Dash.fi` team.
+2. Open a PR to this repo adding a **Core** nav group in `scalar.config.json` that references the `core-*` slugs.
+
+One registry, one bill, one site.
 
 ## Local preview
 
 ```bash
-cd internal
-npx mint@latest dev        # http://localhost:3000
-npx mint@latest validate   # CI-style validation
+npx @scalar/cli project check-config scalar.config.json   # validate config
+npx @scalar/cli project preview scalar.config.json        # local preview (registry refs need auth)
 ```
+
+To preview against local spec files instead of the registry, point a route's `filepath` at a local `.json` rather than `namespace`/`slug`.
