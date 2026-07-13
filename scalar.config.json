@@ -1,0 +1,62 @@
+{
+  "$schema": "https://registry.scalar.com/@scalar/schemas/config",
+  "scalar": "2.0.0",
+  "info": {
+    "title": "Dash.fi Internal API Docs",
+    "description": "Private OpenAPI reference for Dash.fi's internal-facing REST APIs."
+  },
+  "siteConfig": {
+    "subdomain": "dashfi-internal-api-docs",
+    "customDomain": "internal-api-docs.dash.fi",
+    "theme": "default",
+    "logo": {
+      "lightMode": "https://dashbook.vercel.app/api/logo/wordmark/transparent",
+      "darkMode": "https://dashbook.vercel.app/api/logo/wordmark/jade-dark"
+    }
+  },
+  "navigation": {
+    "routes": {
+      "/": {
+        "type": "group",
+        "title": "Dash.fi Internal API Docs",
+        "children": {
+          "": {
+            "type": "page",
+            "title": "Overview",
+            "filepath": "docs/index.md"
+          },
+          "/surface": {
+            "type": "group",
+            "title": "Surface",
+            "children": {
+              "/surface/web-api": {
+                "type": "openapi",
+                "title": "Surface Web API",
+                "namespace": "dash-fi",
+                "slug": "surface-web-api",
+                "version": "latest",
+                "mode": "flat"
+              },
+              "/surface/admin-api": {
+                "type": "openapi",
+                "title": "Surface Admin API",
+                "namespace": "dash-fi",
+                "slug": "surface-admin-api",
+                "version": "latest",
+                "mode": "flat"
+              },
+              "/surface/internal-api": {
+                "type": "openapi",
+                "title": "Surface Internal API",
+                "namespace": "dash-fi",
+                "slug": "surface-internal-api",
+                "version": "latest",
+                "mode": "flat"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
