@@ -23,9 +23,8 @@ api-docs/ (this repo — Scalar Docs project) ── Git sync on merge ──►
 ```
 api-docs/
 ├── scalar.config.json   # the whole site: nav (grouped by team), theme, logo, registry refs
-├── docs/                # shared Markdown/MDX developer docs
-│   └── index.md         # landing page
-└── internal/            # LEGACY Mintlify project — kept until Scalar cutover, then delete
+└── docs/                # shared Markdown/MDX developer docs
+    └── index.md         # landing page
 ```
 
 No `*.json` specs live here anymore — they come from the registry.

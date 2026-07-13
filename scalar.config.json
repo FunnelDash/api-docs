@@ -34,7 +34,7 @@
                 "namespace": "dash-fi",
                 "slug": "surface-web-api",
                 "version": "latest",
-                "mode": "flat"
+                "mode": "folder"
               },
               "/surface/admin-api": {
                 "type": "openapi",
@@ -42,7 +42,7 @@
                 "namespace": "dash-fi",
                 "slug": "surface-admin-api",
                 "version": "latest",
-                "mode": "flat"
+                "mode": "folder"
               },
               "/surface/internal-api": {
                 "type": "openapi",
@@ -50,7 +50,7 @@
                 "namespace": "dash-fi",
                 "slug": "surface-internal-api",
                 "version": "latest",
-                "mode": "flat"
+                "mode": "folder"
               }
             }
           }
