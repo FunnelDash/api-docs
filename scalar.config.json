@@ -7,7 +7,6 @@
   },
   "siteConfig": {
     "subdomain": "dashfi-internal-api-docs",
-    "customDomain": "internal-api-docs.dash.fi",
     "theme": "default",
     "logo": {
       "lightMode": "https://dashbook.vercel.app/api/logo/wordmark/transparent",
