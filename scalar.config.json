@@ -54,6 +54,228 @@
                 "mode": "folder"
               }
             }
+          },
+          "/core": {
+            "type": "group",
+            "title": "Core",
+            "children": {
+              "/core/account-api": {
+                "type": "openapi",
+                "title": "Account API",
+                "namespace": "dash-fi",
+                "slug": "core-account-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/accounts-payable": {
+                "type": "openapi",
+                "title": "Accounts Payable API",
+                "namespace": "dash-fi",
+                "slug": "core-accounts-payable",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/ad-audit-api": {
+                "type": "openapi",
+                "title": "Ad Pay Protection Project API",
+                "namespace": "dash-fi",
+                "slug": "core-ad-audit-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/ad-audit-web-analytics": {
+                "type": "openapi",
+                "title": "Ad Audit Web Analytics API",
+                "namespace": "dash-fi",
+                "slug": "core-ad-audit-web-analytics",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/card-api": {
+                "type": "openapi",
+                "title": "Card API",
+                "namespace": "dash-fi",
+                "slug": "core-card-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/card-share-api": {
+                "type": "openapi",
+                "title": "Card Share API",
+                "namespace": "dash-fi",
+                "slug": "core-card-share-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/card-transaction-rule": {
+                "type": "openapi",
+                "title": "Card transaction rules API",
+                "namespace": "dash-fi",
+                "slug": "core-card-transaction-rule",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/credit-api": {
+                "type": "openapi",
+                "title": "Credit API",
+                "namespace": "dash-fi",
+                "slug": "core-credit-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/credit-cash-advance": {
+                "type": "openapi",
+                "title": "Credit Cash Advance API",
+                "namespace": "dash-fi",
+                "slug": "core-credit-cash-advance",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/credit-statement": {
+                "type": "openapi",
+                "title": "Credit Statement API",
+                "namespace": "dash-fi",
+                "slug": "core-credit-statement",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/customer": {
+                "type": "openapi",
+                "title": "Customer API",
+                "namespace": "dash-fi",
+                "slug": "core-customer",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/fee-main-api": {
+                "type": "openapi",
+                "title": "Fee API",
+                "namespace": "dash-fi",
+                "slug": "core-fee-main-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/integrations-cfx-inbound": {
+                "type": "openapi",
+                "title": "CFX inbound API",
+                "namespace": "dash-fi",
+                "slug": "core-integrations-cfx-inbound",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/integrations-oauth": {
+                "type": "openapi",
+                "title": "OAuth Integrations API",
+                "namespace": "dash-fi",
+                "slug": "core-integrations-oauth",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/integrations-plaid-inbound-webhooks": {
+                "type": "openapi",
+                "title": "Plaid Inbound Webhooks API",
+                "namespace": "dash-fi",
+                "slug": "core-integrations-plaid-inbound-webhooks",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/lead-api": {
+                "type": "openapi",
+                "title": "Lead API",
+                "namespace": "dash-fi",
+                "slug": "core-lead-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/partner-api": {
+                "type": "openapi",
+                "title": "Partner API",
+                "namespace": "dash-fi",
+                "slug": "core-partner-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/payable-api": {
+                "type": "openapi",
+                "title": "Payable API",
+                "namespace": "dash-fi",
+                "slug": "core-payable-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/public-api": {
+                "type": "openapi",
+                "title": "Public Dash.fi API",
+                "namespace": "dash-fi",
+                "slug": "core-public-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/rewards-lithic-api": {
+                "type": "openapi",
+                "title": "Lithic Rewards API",
+                "namespace": "dash-fi",
+                "slug": "core-rewards-lithic-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/rewards-payouts-api": {
+                "type": "openapi",
+                "title": "Rewards Payouts API",
+                "namespace": "dash-fi",
+                "slug": "core-rewards-payouts-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/rewards-transaction": {
+                "type": "openapi",
+                "title": "Rewards Transaction API",
+                "namespace": "dash-fi",
+                "slug": "core-rewards-transaction",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/risk-api": {
+                "type": "openapi",
+                "title": "Risk API",
+                "namespace": "dash-fi",
+                "slug": "core-risk-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/risk-plaid-webhooks": {
+                "type": "openapi",
+                "title": "Risk Plaid Webhooks API",
+                "namespace": "dash-fi",
+                "slug": "core-risk-plaid-webhooks",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/transactions-e6-card-back-office": {
+                "type": "openapi",
+                "title": "EOD card settlement transactions back office API",
+                "namespace": "dash-fi",
+                "slug": "core-transactions-e6-card-back-office",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/transactions-e6-card-main-api": {
+                "type": "openapi",
+                "title": "Card transactions API",
+                "namespace": "dash-fi",
+                "slug": "core-transactions-e6-card-main-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/core/user-api": {
+                "type": "openapi",
+                "title": "User API",
+                "namespace": "dash-fi",
+                "slug": "core-user-api",
+                "version": "latest",
+                "mode": "folder"
+              }
+            }
           }
         }
       }
