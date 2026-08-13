@@ -54,7 +54,7 @@
                 "mode": "folder"
               },
               "/surface/service-events": {
-                "type": "asyncapi",
+                "type": "openapi",
                "title": "Surface Service Events",
                "namespace": "dash-fi",
                "slug": "surface-service-events",
