@@ -53,13 +53,37 @@
                 "version": "latest",
                 "mode": "folder"
               },
+              "/surface/advertising-agent-api": {
+                "type": "openapi",
+                "title": "Advertising Agent API",
+                "namespace": "dash-fi",
+                "slug": "surface-advertising-agent-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/surface/ai-spend-agent-api": {
+                "type": "openapi",
+                "title": "AI Spend Agent API",
+                "namespace": "dash-fi",
+                "slug": "surface-ai-spend-agent-api",
+                "version": "latest",
+                "mode": "folder"
+              },
+              "/surface/shipping-agent-api": {
+                "type": "openapi",
+                "title": "Shipping Agent API",
+                "namespace": "dash-fi",
+                "slug": "surface-shipping-agent-api",
+                "version": "latest",
+                "mode": "folder"
+              },
               "/surface/service-events": {
                 "type": "openapi",
-               "title": "Surface Service Events",
-               "namespace": "dash-fi",
-               "slug": "surface-service-events",
-               "version": "latest",
-               "mode": "folder"
+                "title": "Surface Service Events",
+                "namespace": "dash-fi",
+                "slug": "surface-service-events",
+                "version": "latest",
+                "mode": "folder"
               }
             }
           },
